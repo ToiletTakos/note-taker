@@ -2,7 +2,6 @@ const fs = require('fs');
 const router = require('express').Router();
 const path = require('path');
 const notes = require('../../db/db.json');
-const newNote = require('../../lib/note,');
 const uniqid = require('uniqid');
 
 router.get("/notes", (req, res) => {
@@ -34,18 +33,12 @@ router.post("/notes", (req, res) => {
   return res.status(200).end();
 });
 
-// router.delete("/notes/:id", (req, res) => {
-//   item.remove({
-//     _id: req.params.id
-//   }, err => {
-//     if(err) {
-//       res.send(err);
-//     }
-//     else{
-//       console.log("deleted!")
-//     }
-//   })
-// })
 
+router.delete("/notes/:id", function (req, res) {
+  notes.splice(req.params.id, 1);
+  console.log(req.params.id);
+
+  res.redirect(req.get('referer'));
+});
 
 module.exports = router;
