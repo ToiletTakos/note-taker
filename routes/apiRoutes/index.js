@@ -34,7 +34,7 @@ router.post("/notes", (req, res) => {
 });
 
 
-router.delete("/notes/:id", function (req, res) {
+router.delete("/notes/:id", (req, res) => {
   notes.splice(req.params.id, 1);
   console.log(req.params.id);
 
